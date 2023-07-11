@@ -1,5 +1,5 @@
 import React from 'react';
-import './lodging.scss'
+import './lodging.scss';
 
 export default function Lodging () {
     return (
