@@ -9,7 +9,7 @@ export default function Error404 () {
              <div className="error404__logo">
                     <img src={error} alt="logo 404" />
                 </div>
-            <p>Oups! La page que vous demandez n'existe pas.</p>
+            <p className='error404__text'>Oups! La page que vous demandez n'existe pas.</p>
             <Link className="backToHome" to="/">Retourner sur la page d'accueil</Link>
         </div>
     );

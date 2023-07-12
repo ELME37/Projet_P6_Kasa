@@ -1,3 +1,24 @@
+.container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
 .home {
     color:blue
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    align-items: center;
+    gap: 50px 5%;
+    width: 100%;
+    border-radius: 25px;
+    margin: 50px 0;
+    padding: 54px;
+    background-color: #F6F6F6;
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
 }
