@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './collapse.scss';
 
-function Collapse({ title, content }) {
+function Collapse({ title, children, styles = '' }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   function openCollapse () {
@@ -9,17 +9,18 @@ function Collapse({ title, content }) {
   };
 
   return (
-    <div className="container">
+    <div className={`collapse ${styles}`}>
       <button className="collapse__header">
         <h3 className="collapse__title">{title}</h3>
         <span className={isCollapsed ? "arrow-up" : "arrow-down"} onClick={openCollapse} ></span>
       </button>
 
-      {isCollapsed && (
-        <div className="collapse__body">
-          <p className="collapse__content">{content}</p>
+      <div className={isCollapsed ? "collapse__body active" : "collapse__body"}>
+        <div className="collapse__content">        
+          {children}
         </div>
-      )}
+      </div>
+
     </div>
   );
 }
