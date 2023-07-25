@@ -3,27 +3,31 @@
     justify-content: flex-end;
     margin: 0;
     padding: 0;
-}
 
-.star {
-    font-size: 22px;
-    padding: 0;
-    margin: 5px;
-}
+    .star {
+        font-size: 22px;
+        padding: 0;
+        margin: 5px;
+    }
 
-.star svg {
-    padding: 0;
-    margin: 0;
+    svg {
+        padding: 0;
+        margin: 0;
+    }
 }
 
 @media screen and (max-width: 780px) {
-    .star {
-        font-size: 20px;
+    .stars {
+        .star {
+            font-size: 20px;
+        }
     }
 }
 
 @media screen and (max-width: 476px) {
-    .star {
-        font-size: 16px;
+    .stars {
+        .star {
+            font-size: 16px;
+        }
     }
 }
