@@ -20,7 +20,7 @@ export default function Home () {
 
     return (
         <div className='home'>
-            <Banner title="Chez vous, partout et ailleurs" imageSrcUrl={banner_home} />
+            <Banner title={<span>Chez vous, <br className="banner__br"/>partout et ailleurs</span>} imageSrcUrl={banner_home} />
 
             <div className="gallery">
                 {lodgingData.map(lodging => (

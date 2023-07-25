@@ -9,7 +9,7 @@ function Collapse({ title, children, styles = '' }) {
   };
 
   return (
-    <div className={`collapse ${styles}`}>
+    <div className={`${styles}`}>
       <button className="collapse__header">
         <h3 className="collapse__title">{title}</h3>
         <span className={isCollapsed ? "arrow-up" : "arrow-down"} onClick={openCollapse} ></span>
@@ -20,6 +20,8 @@ function Collapse({ title, children, styles = '' }) {
           {children}
         </div>
       </div>
+
+      
 
     </div>
   );

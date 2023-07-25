@@ -6,6 +6,7 @@ import Tag from '../../components/tag/Tag';
 import Star from '../../components/star/Star';
 import Collapse from '../../components/collapse/Collapse';
 
+
 export default function Lodging () {
   
   const { id } = useParams()
@@ -32,12 +33,9 @@ export default function Lodging () {
   if (!lodging) {
     return null;
   }
-
-  console.log(lodging.equipments)
     
     return (
         <div className='lodging'>
-
           <Carrousel images={lodging.pictures} />
 
           <div className='lodging__infos'>
@@ -71,7 +69,7 @@ export default function Lodging () {
                 </div>
             </div>
           </div>
-          <div className="collapses__lodging">
+          <div className="collapses collapses__lodging">
               <Collapse styles="collapse__lodging"
                 title="Description" 
                 children={lodging.description}

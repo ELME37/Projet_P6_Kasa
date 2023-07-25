@@ -11,3 +11,35 @@
     background-color: #F6F6F6;
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
 }
+
+.br {
+   display: none;
+  }
+
+@media screen and (max-width: 780px) {
+    .gallery{
+        justify-content: space-between;
+        gap: 30px 4%;  
+        padding: 30px;
+    }
+}
+
+@media screen and (max-width: 476px) {
+    .gallery{
+        gap: 30px 0;  
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    .gallery{
+        gap: 20 0;
+        padding: 0;
+        background-color: #FFF;
+        box-shadow: none;
+    }
+
+    .banner__br{
+        display: inline;
+    }
+}
