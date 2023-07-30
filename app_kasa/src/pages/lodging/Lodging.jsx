@@ -1,50 +1,55 @@
+// Import des librairies React
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+// Import du fichier de style SCSS
 import './lodging.scss';
-import { useParams, useNavigate } from 'react-router-dom';
+// Import des composants
 import Carrousel from '../../components/carrousel/Carrousel';
 import Tag from '../../components/tag/Tag';
 import Star from '../../components/star/Star';
 import Collapse from '../../components/collapse/Collapse';
+import Error404 from '../error404/Error404';
 
-
+// Définition du composant sous forme de fonction
 export default function Lodging () {
   
+  // Utilisation du hook useParams pour récupérer l'ID du logement
   const { id } = useParams()
-  const errorPage = useNavigate();
+  // Utilisation du Hook d'état useState pour stocker les informations du logement
   const [lodging, setLodging] = useState(null);
  
+  // Utilisation du Hook useEffect pour charger les informations du logement
   useEffect(() => {
-    
     fetch('/data_lodging/lodging.json')
       .then((response) => response.json())
       .then((data) => {
-
+        // Recherche du logement correspondant à l'ID récupéré dans la base de données
         const selectedLodging = data.find((lodging) => lodging.id === id);
-
-        if (selectedLodging) {
+          // Mise à jour de l'état du logement avec les informations récupérées
           setLodging(selectedLodging);
-      } else {
-        errorPage('/error404');
-      }
       })
       .catch(error => console.error(error))
-  }, [ id, errorPage]);
+  }, [ id ]);
 
+  // Si le logement n'est pas encore chargé, renvoyer la page d'erreur 404
   if (!lodging) {
-    return null;
+    return <Error404 />;
   }
-    
+    // Eléments retourner par le composant
     return (
         <div className='lodging'>
+          {/* Appel du composant Carrousel */}
           <Carrousel images={lodging.pictures} />
 
           <div className='lodging__infos'>
             <div className="lodging__presentation">
               <div className="lodging__infos--title">
+                  {/* Récupération des données sur le logement (titre + location) */}
                   <h2 className='lodging__title'>{lodging.title}</h2>
                   <p className='lodging__location'>{lodging.location}</p>
               </div>
               <div className="tags">
+                {/* Parcours de la liste des logements et appel du composant Tag */}
                 {lodging.tags.map((tag, id) => (
                   <Tag content={tag} key={id} />
                 ))}
@@ -54,6 +59,7 @@ export default function Lodging () {
             <div className='lodging__infos--owner'>
                 <div className="owner">
                     <div className="owner__name">
+                      {/* Récupération des données sur le propriétaire du logement (nom et notation) */}
                       {lodging.host.name.split(' ').map((nameSplit, id) => (
                         <p className='name' key={id}>{nameSplit}</p>
                       ))}
@@ -63,6 +69,7 @@ export default function Lodging () {
                     </div>
                 </div>
                 <div className="stars">
+                  {/* Parcours de la liste des logements et appel du composant Star */}
                   {[...Array(5)].map((star, id) => {
                     return <Star key={id} active={id < lodging.rating} />
                   })}
@@ -70,17 +77,19 @@ export default function Lodging () {
             </div>
           </div>
           <div className="collapses collapses__lodging">
+            {/* Appel du composant Collapse */}
               <Collapse styles="collapse__lodging"
                 title="Description" 
                 children={lodging.description}
               />
               <Collapse styles="collapse__lodging" title="Équipements" >
-                {lodging.equipments.map((equipment, id) => (
-                <p className='collapse__item' key={id}>{equipment}</p>
-              ))}          
+                <ul className='collapse__list'>
+                  {lodging.equipments.map((equipment, id) => (
+                  <li className='collapse__list--item' key={id}>{equipment}</li>
+                  ))} 
+                </ul>         
               </Collapse>
           </div>
         </div>
-        
     );
 };

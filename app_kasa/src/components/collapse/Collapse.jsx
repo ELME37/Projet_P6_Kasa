@@ -1,13 +1,19 @@
+// Import des librairies React
 import React, { useState } from "react";
+// Import du fichier de style SCSS
 import './collapse.scss';
 
-function Collapse({ title, children, styles = '' }) {
+// Définition du composant sous forme de fonction avec les props
+export default function Collapse({ title, children, styles = '' }) {
+  // Utilisation du Hook d'état useState pour suivre l'état du collapse
   const [isCollapsed, setIsCollapsed] = useState(false);
 
+  // Fonction pour gerer l'ouverture et la fermeture du collapse
   function openCollapse () {
     setIsCollapsed(!isCollapsed)
   };
-
+  
+  // Eléments retourner par le composant
   return (
     <div className={`${styles}`}>
       <button className="collapse__header">
@@ -20,11 +26,6 @@ function Collapse({ title, children, styles = '' }) {
           {children}
         </div>
       </div>
-
-      
-
     </div>
   );
 }
-
-export default Collapse;

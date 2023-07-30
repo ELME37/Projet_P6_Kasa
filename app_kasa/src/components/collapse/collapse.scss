@@ -62,9 +62,15 @@
         color: #FF6060;
         padding: 30px 20px 20px 20px;
 
-        .collapse__item {
+        .collapse__list {
           margin: 0;
-          line-height: 24px;
+          padding: 0;
+
+          .collapse__list--item {
+            list-style-type: none;
+            margin: 0;
+            line-height: 24px;
+          }
         }
       }
     }

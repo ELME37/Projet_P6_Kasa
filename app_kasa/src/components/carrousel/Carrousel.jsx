@@ -1,20 +1,27 @@
+// Import des librairies React
 import React, { useState } from "react";
+// Import du fichier de style SCSS
 import './carrousel.scss';
 
+// Définition du composant sous forme de fonction avec les props
 export default function Carrousel ({ images }) {
-
+    // Utilisation du Hook d'état useState pour suivre l'index de l'image actuellement affichée
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+    // Fonction pour afficher l'image précédente
     function displayPreviousImage() {
-    setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+        setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
     };
 
+    // Fonction pour afficher l'image suivante
     function displayNextImage() {
-    setCurrentImageIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))
+        setCurrentImageIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))
     };
-
+    
+    // Eléments retourner par le composant
     return (
             <div className="carrousel">
+                {/* Affichage des flèches de navigation et du compteur d'image uniquement si le nombre d'images est supérieur à 1 */}
                 {images.length > 1 && (
                     <>
                         <button className="arrow-left" onClick={displayPreviousImage}>
@@ -33,6 +40,7 @@ export default function Carrousel ({ images }) {
                     </>
                 )}
 
+                {/* Affichage des images avec ybe transition pour l'animation */}
                 <div className="carrousel__images-container"
                     style={{transform: `translateX(-${currentImageIndex * 100}%)`}}>
                         {images.map((index) => (

@@ -1,7 +1,11 @@
+// Import des librairies React
 import React from 'react';
+// Import du fichier de style SCSS
 import './star.scss';
 
+// Définition du composant sous forme de fonction avec les props
 export default function Star ({active }) {
+    // Eléments retourner par le composant
     return (
         <span className={active ? 'star star-active' : 'star star-inactive'}>
             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" fill={active ? '#FF6060' : '#E3E3E3'}>
