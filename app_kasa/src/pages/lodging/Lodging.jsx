@@ -17,6 +17,10 @@ export default function Lodging () {
   const { id } = useParams()
   // Utilisation du Hook d'état useState pour stocker les informations du logement
   const [lodging, setLodging] = useState(null);
+// Utilisation du Hook d'état useState pour stocker le chargement de la page
+  const [isLoading, setIsLoading] = useState(true);
+  // Utilisation du Hook d'état useState pour stocker les erreurs
+  const [isError, setIsError] = useState(false);
  
   // Utilisation du Hook useEffect pour charger les informations du logement
   useEffect(() => {
@@ -25,14 +29,29 @@ export default function Lodging () {
       .then((data) => {
         // Recherche du logement correspondant à l'ID récupéré dans la base de données
         const selectedLodging = data.find((lodging) => lodging.id === id);
-          // Mise à jour de l'état du logement avec les informations récupérées
-          setLodging(selectedLodging);
+          // Si id non trouvé alors renvoie sur la page d'erreur sinon renvoie sur la page du logement
+          if (!selectedLodging) {
+            setIsError(true);
+          } else {
+              setLodging(selectedLodging);
+            }
+        // On change l'état du chargement en mettant false
+        setIsLoading(false);
       })
-      .catch(error => console.error(error))
+      .catch(error => {
+        console.error(error);
+        setIsError(true);
+        setIsLoading(false);
+      });
   }, [ id ]);
 
-  // Si le logement n'est pas encore chargé, renvoyer la page d'erreur 404
-  if (!lodging) {
+// Si la page est entrain de se charger alors on indique que son chargement est en cours
+  if (isLoading) {
+    return <p>Chargement en cours</p>;
+  }
+
+  // Si une error est trouvé alors on se redirige vers la page 404 
+  if (isError) {
     return <Error404 />;
   }
     // Eléments retourner par le composant
@@ -78,10 +97,9 @@ export default function Lodging () {
           </div>
           <div className="collapses collapses__lodging">
             {/* Appel du composant Collapse */}
-              <Collapse styles="collapse__lodging"
-                title="Description" 
-                children={lodging.description}
-              />
+              <Collapse styles="collapse__lodging" title="Description">
+                  <p>{lodging.description}</p>
+              </Collapse>
               <Collapse styles="collapse__lodging" title="Équipements" >
                 <ul className='collapse__list'>
                   {lodging.equipments.map((equipment, id) => (

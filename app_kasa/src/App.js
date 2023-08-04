@@ -7,7 +7,7 @@ import Router from "./router/Router";
 import Layout from "./components/layout/Layout";
 import Footer from "./components/footer/Footer";
 
-// Définition du composant sous forme de fonction avec les props
+// Définition du composant sous forme de fonction
 export default function App() {
   // Eléments retourner par le composant
   return (
