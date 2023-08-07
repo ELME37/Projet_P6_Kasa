@@ -14,7 +14,7 @@ export default function About () {
     return (
         <div className='about'>
              {/* Appel du composant Banner */}
-            <Banner imageSrcUrl={banner_about} />
+            <Banner imageSrcUrl={banner_about} styles='about' />
 
             <div className="collapses collapses__about">
                 {/* Appel du composant Collapse */}

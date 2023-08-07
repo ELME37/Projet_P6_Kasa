@@ -4,10 +4,10 @@ import React from 'react';
 import './banner.scss';
 
 // Définition du composant sous forme de fonction avec les props
-export default function Banner({ title, imageSrcUrl }) {
+export default function Banner({ title, imageSrcUrl, styles = ''}) {
     // Eléments retourner par le composant
     return (
-            <div className='banner'>
+            <div className={`banner ${styles}`}>
                 <h1 className='banner__title'>{title}</h1>
                 <div className='banner__image'>
                     <img src={imageSrcUrl} alt="bannière" />

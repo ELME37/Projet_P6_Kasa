@@ -8,12 +8,13 @@ export default function Carrousel ({ images }) {
     // Utilisation du Hook d'état useState pour suivre l'index de l'image actuellement affichée
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-    // Fonction pour afficher l'image précédente
+    //Fonction pour afficher l'image précédente
     function displayPreviousImage() {
         setCurrentImageIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
     };
 
-    // Fonction pour afficher l'image suivante
+    //Fonction pour afficher l'image suivante
+
     function displayNextImage() {
         setCurrentImageIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))
     };
